@@ -9,7 +9,7 @@ class Api{
   static final Api instace = Api._();
   Api._();
 
-  final String baseUri = 'https://9cdb-5-124-82-210.ngrok-free.app/api/';
+  final String baseUri = 'https://e4d5-5-22-103-234.ngrok-free.app/api/';
   final Map<String,String> baseHeader = { "Content-Type" : "application/json" };
   Future<String?> getToken()async => boxList[1].values.firstOrNull;
 
