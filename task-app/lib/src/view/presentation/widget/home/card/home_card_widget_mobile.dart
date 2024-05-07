@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:taskapp/src/core/bottom_shets.dart';
@@ -6,14 +7,14 @@ import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/view/data/model/task_model.dart';
 
 
-class CardTaskWidget extends StatefulWidget {
+class CardTaskWidgetMobile extends StatefulWidget {
   final TaskModel data;
-  const CardTaskWidget({super.key,required this.data});
+  const CardTaskWidgetMobile({super.key,required this.data});
 
   @override
-  State<CardTaskWidget> createState() => _CardTaskWidgetState();
+  State<CardTaskWidgetMobile> createState() => _CardTaskWidgetMobileState();
 }
-class _CardTaskWidgetState extends State<CardTaskWidget> {
+class _CardTaskWidgetMobileState extends State<CardTaskWidgetMobile> {
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   late TaskModel data;
@@ -24,16 +25,20 @@ class _CardTaskWidgetState extends State<CardTaskWidget> {
     super.initState();
     data = widget.data;
     
-    //  final int startHour = widget.data.startTime == null || widget.data.startTime!.isEmpty 
-    //       ? 0
-    //       : int.parse(widget.data.startTime?.split(' ')[1].split('.')[0].split(':')[0] ?? '0');
-    // final int startMinute = widget.data.startTime == null || widget.data.startTime!.isEmpty 
-    //       ? 0
-    //       : int.parse(widget.data.startTime?.split(' ')[1].split('.')[0].split(':')[1] ?? '0');
-
-
     DateTime x = DateTime.now();
-    DateTime pickedTime = DateTime(x.year,x.month,x.day,x.hour,x.minute,x.second);
+    final int startHour = widget.data.startTime == null || widget.data.startTime!.isEmpty 
+          ? x.hour
+          : int.parse(widget.data.startTime?.split(' ')[1].split('.')[0].split(':')[0] ?? '0');
+    final int startMinute = widget.data.startTime == null || widget.data.startTime!.isEmpty 
+          ? x.minute
+          : int.parse(widget.data.startTime?.split(' ')[1].split('.')[0].split(':')[1] ?? '0');
+
+    final int startSecond = widget.data.startTime == null || widget.data.startTime!.isEmpty 
+          ? x.second
+          : int.parse(widget.data.startTime?.split(' ')[1].split('.')[0].split(':')[2] ?? '0');
+
+
+    DateTime pickedTime = DateTime(x.year,x.month,x.day,startHour,startMinute,startSecond);
     DateTime now = DateTime.now();
     Duration difference = now.difference(pickedTime);
 
@@ -42,7 +47,7 @@ class _CardTaskWidgetState extends State<CardTaskWidget> {
       
     _stopWatchTimer.setPresetHoursTime (data.diffTime == null || data.diffTime!.isEmpty ? hour :   int.parse(data.diffTime?.split(':')[0] ?? '0'));
     _stopWatchTimer.setPresetMinuteTime(data.diffTime == null || data.diffTime!.isEmpty ? minute : int.parse(data.diffTime?.split(':')[1] ?? '0'));
-    // _stopWatchTimer.setPresetSecondTime(data.diffTime == null || data.diffTime!.isEmpty ? minute : int.parse(data.diffTime?.split(':')[2] ?? '0'));
+    _stopWatchTimer.setPresetSecondTime(data.diffTime == null || data.diffTime!.isEmpty ? minute : int.parse(data.diffTime?.split('.')[0].split(':')[2] ?? '0'));
 
     _stopWatchTimer.onStartTimer();
   }

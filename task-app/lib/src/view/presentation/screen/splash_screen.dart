@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:taskapp/src/core/responsive.dart';
 import 'package:taskapp/src/core/colors.dart';
+import 'package:taskapp/src/core/responsive_chose/responsive_choses.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/utils/is_user_login.dart';
-import 'package:taskapp/src/core/widget/bottom_navigation_widget.dart';
-import 'package:taskapp/src/view/presentation/screen/login_screen.dart';
+import 'dart:html' as html;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,9 +14,7 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => SplashScreenState();
 }
-
 class SplashScreenState extends State<SplashScreen> {
-  
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +25,15 @@ class SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Image.asset(
-              'assets/logo/T.gif',
-              filterQuality: FilterQuality.high,
-            )),
+          Responsive.isDesktop(context) || Responsive.isTablet(context)
+            ? Expanded( flex: 2 , child: logoLottie, )
+            : logoLottie,
+
           Container(
             alignment: Alignment.bottomCenter,
-            margin: EdgeInsets.only(top: kwidth(context)*0.2),
+            margin: Responsive.isDesktop(context) || Responsive.isTablet(context)
+              ? const EdgeInsets.only(bottom: 70)
+              : EdgeInsets.only(top: kwidth(context)*0.2),
             child: FutureBuilder(
               future: internetChecker(), 
               builder: (context, snapshot) {
@@ -53,16 +54,24 @@ class SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  Widget logoLottie =  Center(child: Image.asset( 'assets/logo/T.gif', filterQuality: FilterQuality.high,));
+
   Future<bool> internetChecker()async{
       try {
-        final result = await InternetAddress.lookup('google.com');
-        bool hasInternet =  result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+        bool hasInternet;
+
+        if(kIsWeb) hasInternet = html.window.navigator.onLine ?? false;
+        else{
+          final result = await InternetAddress.lookup('google.com');
+          hasInternet =  result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+        }
+
 
         if(hasInternet){
           bool isUserLogedIn = await isUserLoggin();
           if(mounted){
            await Future.delayed(const Duration(seconds: 5),()=>
-              Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context) => isUserLogedIn ? const BottomNavigationBarWidget() : const LoginScreen() )));
+              Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (context) => isUserLogedIn ? bottomNavigationBarChoose() : loginResponsiveChoese() )));
           }
           return true;
         }
@@ -75,6 +84,7 @@ class SplashScreenState extends State<SplashScreen> {
         return false;
       }
   }
+
 }
 
 

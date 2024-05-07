@@ -8,9 +8,12 @@ import 'package:taskapp/src/view/presentation/bloc/task_bloc/task_bloc.dart';
 
 Widget errorWidget(BuildContext context,String err,double height,double marginFromTop,VoidCallback onTap)=> Column(
   children: [
-    Lottie.asset('assets/lottie/error3.json',height: height,width: kwidth(context)*0.9, fit: BoxFit.cover),
+    SizedBox(
+      width: kwidth(context)*0.4,
+      height: kheight(context)*0.5,
+      child: Lottie.asset('assets/lottie/error3.json',height: height, fit: BoxFit.cover)),
     SizedBox(height: marginFromTop,),
-    Text(err,style: TextStyle(color: kFourthColor,fontWeight: FontWeight.bold,fontSize: kwidth(context)*0.04),),
+    Text(err,style: const TextStyle(color: kFourthColor,fontWeight: FontWeight.bold,fontSize: 18),),
     SizedBox(height: kheight(context)*0.06,),
     SizedBox(
       width: kwidth(context)*0.9,
@@ -24,4 +27,5 @@ Widget errorWidget(BuildContext context,String err,double height,double marginFr
     )
   ],
 );
+
 loadingButton(BuildContext context) =>ElevatedButton( onPressed: (){}, style: authButtonStyle(context,kThiredColor), child: const CircularProgressIndicator(),);

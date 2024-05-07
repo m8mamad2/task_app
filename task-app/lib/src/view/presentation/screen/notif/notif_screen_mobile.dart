@@ -13,19 +13,19 @@ import 'package:taskapp/src/view/presentation/widget/notif/notif_card_widget.dar
 
 NotifModel fakeNotifModel = NotifModel(1, 'Calling ME For Some Reason', 'ok Thas sound WOsome', 1, 1, 1,'23:00');
 
-class NotifScreen extends StatefulWidget {
-  const NotifScreen({super.key});
+class NotifScreenMobile extends StatefulWidget {
+  const NotifScreenMobile({super.key});
 
   @override
-  State<NotifScreen> createState() => _NotifScreenState();
+  State<NotifScreenMobile> createState() => _NotifScreenMobileState();
 }
-class _NotifScreenState extends State<NotifScreen> {
+class _NotifScreenMobileState extends State<NotifScreenMobile> {
 
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1),isHomeScreen: false),
+      appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1),isHomeScreenMobile: false),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: kwidth(context)*0.045),
         child: SingleChildScrollView(
@@ -39,7 +39,7 @@ class _NotifScreenState extends State<NotifScreen> {
               ),
               BlocBuilder<NotifBloc,NotifState>(
                 builder: (context, state) {
-                  if(state is LoadingNotifState)return notifScreenShimmer(context);
+                  if(state is LoadingNotifState)return NotifScreenMobileShimmer(context);
                   if(state is SuccessNotifState){
                     final List<NotifModel>? data = state.data;
                     return data == null || data.isEmpty 

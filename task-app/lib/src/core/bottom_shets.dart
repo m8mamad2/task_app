@@ -1,15 +1,18 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:taskapp/src/core/borders.dart';
 import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/extenstion/navigation_extension.dart';
+import 'package:taskapp/src/core/keys.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/styles.dart';
 import 'package:taskapp/src/core/utils/random_number.dart';
+import 'package:taskapp/src/core/widget/details_bottom_shet_widgets.dart';
 import 'package:taskapp/src/core/widget/textfiedls.dart';
 import 'package:taskapp/src/view/data/model/notif_model.dart';
 import 'package:taskapp/src/view/data/model/task_model.dart';
@@ -23,7 +26,7 @@ Future addNotifBottomshet(BuildContext context) async {
   loadingButton(BuildContext context) =>ElevatedButton( onPressed: (){}, style: authButtonStyle(context,kThiredColor), child: const CircularProgressIndicator(),);
 
   
-  final key = GlobalKey<FormState>();
+  final key = Keys.addNotifBottomShetKey;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController desController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
@@ -72,14 +75,11 @@ Future addNotifBottomshet(BuildContext context) async {
                             Duration difference = pickedTime.difference(now);
                             int hour = difference.inHours % 24;
                             int minute = difference.inMinutes % 60;
-                            log('$hour,  $minute');
                           
                             timeController.text = '${picked.hour}:${picked.minute}';
                             durationTimeFronNotif = Duration(hours: hour,minutes: minute);
                           }
                           });
-                          log(durationTimeFronNotif.inHours.toString());
-                          log('MInute ${durationTimeFronNotif.inMinutes.toString()}');
                     }),
                     const Spacer(),
                     Padding(
@@ -96,9 +96,6 @@ Future addNotifBottomshet(BuildContext context) async {
                             0, 
                             'What is This?');
 
-                          log(notifModel.minute.toString());
-                        
-                          
                           onTap()=> key.currentState!.validate() 
                             ? context.read<NotifBloc>().add(AddNotifEvent(notifModel,context))
                             : null;
@@ -153,6 +150,7 @@ Future deleteNotifBottomshet(BuildContext context,int index, int id) async {
                     child: Text('Are you Shure You want Delete This Notification? ',
                     style: TextStyle(color: Colors.white,fontSize: kwidth(context)*0.04,fontWeight: FontWeight.w600),)),
                   const Spacer(),
+
                   Padding(
                     padding: EdgeInsets.only(bottom: kheight(context)*0.03),
                     child: Row(
@@ -196,7 +194,7 @@ Future deleteNotifBottomshet(BuildContext context,int index, int id) async {
 
 Future changeInfoBottomShet(BuildContext context,String lable) async {
   
-  final key = GlobalKey();
+  final key = Keys.changeInfoBottomShetKey;
   final TextEditingController controller = TextEditingController();
 
   loadingButton(BuildContext context) =>ElevatedButton( onPressed: (){}, style: authButtonStyle(context,kThiredColor), child: const CircularProgressIndicator(),);
@@ -331,7 +329,6 @@ Future deleteBottomShet(BuildContext context,bool isDeleteAcoount,VoidCallback o
 
 }
 
-
 Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatchTimer stopWatchTimer,BuildContext context0) async {
 
   String priorityInit(int data){
@@ -377,7 +374,6 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
       data.compelete = true;
       context.read<TaskBloc>().add(UpdateTaskEvent(data,context));
       // Future.delayed(const Duration(seconds: 2),()=>context.navigateBack(context));
-      context.navigateBack(context);
     }
   }
   
@@ -386,7 +382,7 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
     data.startTime=  startController.text.isEmpty ? DateTime.now().toString() : startController.text.trim();    
 
     context.read<TaskBloc>().add(UpdateTaskEvent(data,context));
-    context.navigateBack(context);
+    // context.navigateBack(context);
   }
 
   stopOnTap(BuildContext context)async{
@@ -402,7 +398,7 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
     
     stopWatchTimer.onStopTimer();
     context.read<TaskBloc>().add(UpdateTaskEvent(data,context));
-    context.navigateBack(context);
+    // context.navigateBack(context);
   }
     
   
@@ -425,7 +421,7 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //! Title
-            oneColumnWidget(context,'Title',titleController,false,false, false),
+            oneColumnDetailsBottomShetWidget(context,'Title',titleController,false,false, false),
             
             Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -458,17 +454,17 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                oneColumnWidget(context,'Priority',priorityController,true,false, false),
-                oneColumnWidget(context,'Date',dateController,true,false, false),
+                oneColumnDetailsBottomShetWidget(context,'Priority',priorityController,true,false, false),
+                oneColumnDetailsBottomShetWidget(context,'Date',dateController,true,false, false),
             ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                oneColumnWidgetForHour(context,'Start Hour',startController.text,true,false,true ),
-                oneColumnWidgetForHour(context,'Stop Hour', endController.text,true,false,  true ),
+                oneColumnForHourBottomShetWidget(context,'Start Hour',startController.text,true,false,true ),
+                oneColumnForHourBottomShetWidget(context,'Stop Hour', endController.text,true,false,  true ),
             ],),
 
-            oneColumnWidget(context,'Hour Spaende on it',diffController,false,false, false),
+            oneColumnDetailsBottomShetWidget(context,'Hour Spaende on it',diffController,false,false, false),
             
             const Spacer(),
             
@@ -477,7 +473,10 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
                 return Container(
                   height: kheight(context)*0.055,
                   margin: EdgeInsets.only(bottom: kheight(context)*0.02),
-                  child: BlocBuilder<TaskBloc,TaskState>(
+                  child: BlocConsumer<TaskBloc,TaskState>(
+                    listener: (context, state) async{
+                        if(state is SuccessTaskState)return context.navigateBack(context);
+                    },
                     builder: (context, state) {
                       if(state is LoadingTaskState) return ElevatedButton(onPressed: (){}, style: authButtonStyle(context,),child: const CircularProgressIndicator(color: kThiredColor,));
                       if(state is SuccessTaskState || state is InitialTaskState){
@@ -539,64 +538,9 @@ Future detailsNotifBottomShet(BuildContext context,TaskModel taskModel,StopWatch
   
 }
 
-Widget oneColumnWidget(BuildContext context,String title,TextEditingController controller,bool inRow,bool isDes,bool needSplit,[int? maxLine, int?minLine])=>Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Padding(
-      padding: EdgeInsets.only(top: kheight(context)*0.02, bottom: kheight(context)*0.01),
-      child: Text(
-        title,
-        style:const TextStyle(color: kFourthColor,fontWeight: FontWeight.w700 ),),
-    ),
-    SizedBox(
-      height: isDes ? null : kheight(context)*0.06,
-      width: inRow ? kwidth(context)*0.45 : kwidth(context),
-      child: TextFormField(
-        controller: controller,
-        style: TextStyle( color: Colors.white,fontSize: kwidth(context)*0.035 ),
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: TextStyle( color: Colors.grey,fontSize: kwidth(context)*0.03 ),
-          enabledBorder: authBorder(kFourthColor),
-          focusedBorder: authBorder(kFourthColor),
-          focusedErrorBorder: authBorder(kRedColor),
-          errorBorder: authBorder(kRedColor),
-        ),
-      ),
-    )
-  ],
-);
 
-Widget oneColumnWidgetForHour(BuildContext context,String title,String hintText,bool inRow,bool isDes,bool needSplit,){
- log(hintText);
- return Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Padding(
-      padding: EdgeInsets.only(top: kheight(context)*0.02, bottom: kheight(context)*0.01),
-      child: Text(
-        title,
-        style:const TextStyle(color: kFourthColor,fontWeight: FontWeight.w700 ),),
-    ),
-    SizedBox(
-      height: isDes ? null : kheight(context)*0.06,
-      width: inRow ? kwidth(context)*0.45 : kwidth(context),
-      child: TextFormField(
-        readOnly: true,
-        style: TextStyle( color: Colors.white,fontSize: kwidth(context)*0.035 ),
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText:  hintText.isNotEmpty ? hintText.split(" ")[1].split('.')[0].toString() : '',
-          border: InputBorder.none,
-          hintStyle: TextStyle( color: Colors.grey,fontSize: kwidth(context)*0.03 ),
-          enabledBorder: authBorder(kFourthColor),
-          focusedBorder: authBorder(kFourthColor),
-          focusedErrorBorder: authBorder(kRedColor),
-          errorBorder: authBorder(kRedColor),
-        ),
-      ),
-    )
-  ],
-);
-}
+
+
+
+
+

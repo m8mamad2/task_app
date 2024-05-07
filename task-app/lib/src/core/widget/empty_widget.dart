@@ -13,3 +13,14 @@ Widget emptyWidget(BuildContext context,String text,double height,double marginF
     ],
   ),
 );
+
+Widget emptyWidgetDesktop(BuildContext context,String text,double height,double marginFromTop)=> Center(
+  child: Column(
+    children: [
+      Lottie.asset('assets/lottie/empty.json',height: height,width: kwidth(context)*0.3,fit: BoxFit.cover),
+      SizedBox(height: marginFromTop,),
+      Text(text,style: TextStyle(color: kFourthColor,fontWeight: FontWeight.bold,fontSize: kwidth(context)*0.02),),
+      SizedBox(height: kheight(context)*0.03,)
+    ],
+  ),
+);

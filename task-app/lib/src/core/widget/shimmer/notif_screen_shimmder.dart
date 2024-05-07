@@ -3,7 +3,7 @@ import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/widget/shimmer_widget.dart';
 
-Widget notifScreenShimmer(BuildContext context)=> ListView.builder(
+Widget NotifScreenMobileShimmer(BuildContext context)=> ListView.builder(
   itemCount: 7,
   shrinkWrap: true,
   physics: const BouncingScrollPhysics(),

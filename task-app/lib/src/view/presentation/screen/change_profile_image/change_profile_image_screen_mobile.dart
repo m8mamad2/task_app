@@ -6,15 +6,15 @@ import 'package:taskapp/src/core/images.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/view/presentation/bloc/user_bloc/user_bloc.dart';
 
-class ChangeProfileImageScreen extends StatefulWidget {
+class ChangeProfileImageScreenMobile extends StatefulWidget {
   final int? profileNumber;
-  const ChangeProfileImageScreen({super.key,required this.profileNumber});
+  const ChangeProfileImageScreenMobile({super.key,required this.profileNumber});
 
   @override
-  State<ChangeProfileImageScreen> createState() => _ChangeProfileImageScreenState();
+  State<ChangeProfileImageScreenMobile> createState() => _ChangeProfileImageScreenMobileState();
 }
 
-class _ChangeProfileImageScreenState extends State<ChangeProfileImageScreen> {
+class _ChangeProfileImageScreenMobileState extends State<ChangeProfileImageScreenMobile> {
   
   late int selected;
   @override

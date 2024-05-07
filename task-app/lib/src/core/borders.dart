@@ -9,3 +9,8 @@ homeSearchBorder(Color color)=>OutlineInputBorder(
   borderRadius: BorderRadius.circular(6),
   borderSide: BorderSide(color: color,width: 1)
 );
+
+homeSearchBorderDesktop(Color color)=>OutlineInputBorder(
+  borderRadius: BorderRadius.circular(6),
+  borderSide: BorderSide(color: color,width: 0.1)
+);

@@ -3,7 +3,7 @@ import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/widget/shimmer_widget.dart';
 
-Widget homeScreenShimmer(BuildContext context)=>Padding(
+Widget HomeScreenMobileShimmer(BuildContext context)=>Padding(
   padding: EdgeInsets.symmetric(horizontal: kwidth(context)*0.045),
   child: SingleChildScrollView(
     child: Column(

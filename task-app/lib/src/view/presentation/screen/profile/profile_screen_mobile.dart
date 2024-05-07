@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +10,7 @@ import 'package:taskapp/src/core/widget/error_widget.dart';
 import 'package:taskapp/src/core/widget/shimmer/profile_screen_shimmer.dart';
 import 'package:taskapp/src/view/data/model/user_model_localy.dart';
 import 'package:taskapp/src/view/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:taskapp/src/view/presentation/screen/change_profile_image_screen.dart';
+import 'package:taskapp/src/view/presentation/screen/change_profile_image/change_profile_image_screen_mobile.dart';
 import 'package:taskapp/src/view/presentation/screen/help_webview_screen.dart';
 import 'package:taskapp/src/view/presentation/widget/profile/profile_one_card_widget.dart';
 
@@ -19,13 +18,13 @@ import 'package:taskapp/src/view/presentation/widget/profile/profile_one_card_wi
 const String kLogoutText= 'Are you sure you want to log out of your Account? 💁';
 const String kDeleteAccountText= 'Are you sure you want to Delete your Account?  🙅🏻';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfileScreenMobile extends StatefulWidget {
+  const ProfileScreenMobile({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfileScreenMobile> createState() => _ProfileScreenMobileState();
 }
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenMobileState extends State<ProfileScreenMobile> {
 
   final List<bool> hasValue = [true,true,false,false,false];
   final List<String> titles = ['Name','Email','Help', 'Logout','Delete Account'];
@@ -54,10 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           padding: EdgeInsets.symmetric(horizontal: kwidth(context)*0.045),
           child: BlocBuilder<UserBloc,UserState>(
             builder: (context, state) {
-              if(state is LoadingUserState)return profileScreenShimmer(context);
+              if(state is LoadingUserState)return ProfileScreenMobileShimmer(context);
               if(state is SucessUserState){
                 UserModelLocaly user = state.data!;
-                log(user.profileImage.toString());
                 return Column(
                   children: [
                     //! Image
@@ -73,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Align(
                             alignment: Alignment.bottomRight,
                             child: InkWell(
-                              onTap: ()=> context.navigate(context, ChangeProfileImageScreen( profileNumber:user.profileImage)),
+                              onTap: ()=> context.navigate(context, ChangeProfileImageScreenMobile( profileNumber:user.profileImage)),
                               child: CircleAvatar( 
                                 radius: kwidth(context)*0.04,
                                 backgroundColor: kThiredColor,
@@ -108,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 );
               }
-              if(state is FailUserState)return errorWidget(context, state.fail, kheight(context)*0.4, kheight(context)*0.4,(){});
+              if(state is FailUserState)return errorWidget(context, state.fail, kheight(context)*0.4, kheight(context)*0.4,()=> context.read<UserBloc>().add(GetUserEvent()));
               return Container();
             },
           ),

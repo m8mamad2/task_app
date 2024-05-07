@@ -3,9 +3,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:taskapp/src/core/responsive_chose/responsive_choses.dart';
 import 'package:taskapp/src/view/data/model/user_model_localy.dart';
 import 'package:taskapp/src/view/domain/usecase/usre_usecase.dart';
-import 'package:taskapp/src/view/presentation/screen/login_screen.dart';
+import 'package:taskapp/src/view/presentation/screen/auth/auth_screen_mobile.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
@@ -81,7 +82,7 @@ class UserBloc extends Bloc<UserEvent, UserState>{
       try{
         await usecase.deleteAccount()
           .then((value)async=> value
-            ? Navigator.of(event.context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen())):
+            ? Navigator.of(event.context).pushReplacement(MaterialPageRoute(builder: (context) => loginResponsiveChoese())):
               emit(FailUserState('Fail To Delete Acoount')));
       }
       catch(e){ emit(FailUserState(e.toString())); }
@@ -91,7 +92,7 @@ class UserBloc extends Bloc<UserEvent, UserState>{
       emit(LoadingUserState());
       try{
         await usecase.logOutUser();
-        Navigator.of(event.context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+        Navigator.of(event.context).pushReplacement(MaterialPageRoute(builder: (context) => loginResponsiveChoese()));
       }
       catch(e){ emit(FailUserState(e.toString())); }
 

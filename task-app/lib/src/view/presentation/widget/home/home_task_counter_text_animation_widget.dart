@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/sizes.dart';
 
-Widget homeTaskCounterTextAnimationWidget(BuildContext context,int lenghtOfTasks)=> Padding(
-  padding: EdgeInsets.symmetric(vertical: kheight(context)*0.02,),
+Widget homeTaskCounterTextAnimationWidget(BuildContext context,int lenghtOfTasks,[double? height, bool? isDesktop])=> Padding(
+  padding: EdgeInsets.symmetric(vertical: height ?? kheight(context)*0.02,),
   child: AnimatedTextKit(
     animatedTexts: [
       ColorizeAnimatedText(
         'You Are Have $lenghtOfTasks Tasks ToDay',
-        textStyle: TextStyle( fontWeight: FontWeight.bold, fontSize: kwidth(context)*0.07 ),
+        textStyle:  TextStyle( fontWeight: FontWeight.bold,  fontSize: isDesktop ?? false ? 40 : 30),
         colors: [ kFourthColor, kThiredColor, ],
       ),
     ],
@@ -18,3 +18,5 @@ Widget homeTaskCounterTextAnimationWidget(BuildContext context,int lenghtOfTasks
     onTap: () { },
   ),
 );
+
+

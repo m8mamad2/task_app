@@ -12,16 +12,16 @@ import 'package:taskapp/src/view/data/model/task_model.dart';
 import 'package:taskapp/src/view/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:taskapp/src/view/presentation/bloc/task_bloc/task_bloc.dart';
 import 'package:taskapp/src/view/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:taskapp/src/view/presentation/widget/home/home_card_widget.dart';
+import 'package:taskapp/src/view/presentation/widget/home/card/home_card_widget_mobile.dart';
 import 'package:taskapp/src/view/presentation/widget/home/home_task_counter_text_animation_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenMobile extends StatefulWidget {
+  const HomeScreenMobile({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenMobile> createState() => _HomeScreenMobileState();
 }
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenMobileState extends State<HomeScreenMobile> {
   
   final TextEditingController controller = TextEditingController();
   bool isSearchState = false;
@@ -53,10 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1), isHomeScreen: true),
+      appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1), isHomeScreenMobile: true),
       body: BlocBuilder<TaskBloc,TaskState>(
         builder: (context, state) {
-          if(state is LoadingTaskState)return homeScreenShimmer(context);;
+          if(state is LoadingTaskState)return HomeScreenMobileShimmer(context);;
           if(state is SuccessTaskState){
             final List<TaskModel?>? data = state.taskToDayModel;
              return Padding(
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           physics: const NeverScrollableScrollPhysics(),
                                           itemCount: state.searchTaskModels?.length,
                                           shrinkWrap: true,
-                                          itemBuilder: (context, index) => CardTaskWidget(data: state.searchTaskModels![index]!) )
+                                          itemBuilder: (context, index) => CardTaskWidgetMobile(data: state.searchTaskModels![index]!) )
                                       : emptyWidget(context, 'Not Task For This Day',kheight(context)*0.04,kheight(context)*0.3);
                                 }
                                 if(state is FailSearchState)return Text(state.error,style: TextStyle(color: Colors.white),);
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: data.length,
                               shrinkWrap: true,
-                              itemBuilder: (context, index) => CardTaskWidget(data: data[index]!) )
+                              itemBuilder: (context, index) => CardTaskWidgetMobile(data: data[index]!) )
                           
                     ],
                   ),

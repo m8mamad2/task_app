@@ -24,7 +24,7 @@ class _HelpWebviewScreenState extends State<HelpWebviewScreen> {
       onNavigationRequest: (NavigationRequest request) => NavigationDecision.navigate
     ),
   )
-  ..loadRequest(Uri.parse('https://github.com/M8mamad2'));
+  ..loadRequest(parseUri);
 
   
   @override
@@ -42,3 +42,6 @@ class _HelpWebviewScreenState extends State<HelpWebviewScreen> {
     );
   }
 }
+
+
+final parseUri = Uri.parse('https://github.com/M8mamad2');

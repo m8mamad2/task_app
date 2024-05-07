@@ -7,6 +7,7 @@ import 'package:taskapp/src/config/theme.dart';
 import 'package:taskapp/src/view/data/data_source/local/loacl_db.dart';
 import 'package:taskapp/src/view/presentation/screen/splash_screen.dart';
 
+
 void main() async{
   
   WidgetsFlutterBinding.ensureInitialized();

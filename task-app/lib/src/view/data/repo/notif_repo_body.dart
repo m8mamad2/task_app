@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:taskapp/src/config/notification_setup.dart';
 import 'package:taskapp/src/view/data/data_source/local/loacl_db.dart';
@@ -18,7 +17,6 @@ class NotifRepoBody extends NotifRepoHeader{
       return true;
     }
     catch(e){
-      log('id Add Notif $e');
       return false;
     }
     

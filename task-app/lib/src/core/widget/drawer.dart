@@ -16,6 +16,8 @@ class DrawerWidget extends StatelessWidget {
     final List<IconData> icons = [Icons.person_outline,Icons.help_outline,Icons.logout_outlined,Icons.delete_outline];
     
     return Drawer(
+      surfaceTintColor: kMainColor,
+      shadowColor: kMainColor,
       backgroundColor: kMainColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -31,8 +33,9 @@ class DrawerWidget extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Padding(
-                  padding:  EdgeInsets.only(top:kheight(context)*0.05,left: kwidth(context)*0.05),
+                  padding:  EdgeInsets.only(top:kheight(context)*0.06,left: kwidth(context)*0.05),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -47,18 +50,18 @@ class DrawerWidget extends StatelessWidget {
                       ),
                       //! Nmae
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: kheight(context)*0.015),
+                        padding: EdgeInsets.only(top: kheight(context)*0.015),
                         child: Text(user.name ?? 'User',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: kwidth(context)*0.05),),
                       ),
                     ],
                   ),
                 ),
+                const Divider(color: Colors.white38,),
+                
                 ListView.builder(
                       itemCount: 4,
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => oneDrawerCardWidget(
-                        icons[index], 
-                        titles[index]))
+                      itemBuilder: (context, index) => oneDrawerCardWidget( icons[index],  titles[index]))
               ],
             );
           }
@@ -72,11 +75,12 @@ class DrawerWidget extends StatelessWidget {
 
 
 Widget oneDrawerCardWidget(IconData icon,String title)=>Card(
+  margin: const EdgeInsets.symmetric(vertical: 5),
   color: kMainColor,
   child: ListTile(
-    hoverColor: Colors.white38,
-    focusColor: Colors.white38,
-    selectedColor: Colors.white38,
+    hoverColor: Colors.white12,
+    focusColor: Colors.white12,
+    selectedColor: Colors.white12,
     leading: Icon(icon,color: kThiredColor,),
     title: Text(title,style: const TextStyle(color: kFourthColor),),
   ),

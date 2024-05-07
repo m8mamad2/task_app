@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskapp/src/core/colors.dart';
+import 'package:taskapp/src/core/responsive.dart';
 import 'package:taskapp/src/core/sizes.dart';
 
 
@@ -9,7 +10,7 @@ Widget profileCardWidget(BuildContext context,IconData icon, String title,VoidCa
     width: kwidth(context),
     height: kheight(context)*0.07,
     margin: EdgeInsets.symmetric(vertical: kheight(context)*0.01),
-    padding: EdgeInsets.symmetric(horizontal: kwidth(context)*0.04),
+    padding: EdgeInsets.symmetric(horizontal: Responsive.isLarge(context) ? 30 :kwidth(context)*0.04),
     decoration: BoxDecoration( 
       borderRadius: BorderRadius.circular(15),
       color: kSecondColor ),

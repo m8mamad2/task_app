@@ -26,7 +26,6 @@ const addTaskController = asyncHandler(async(req,res)=>{
             diff_time: diff_time
         });
 
-        console.log(re1s);
         return success(res, 200, 'Task Successsfully Created ');
     }
     catch(e){ return error(res, 400, `Faild To Create Task ${e}`); }
@@ -158,7 +157,6 @@ const chartTaskController = asyncHandler(async(req,res)=>{
 
     try{
         const data= await getWorkTimeFromDB();
-        console.log(data);
         return res.status(200).send(data);
     }
     catch(e){   

@@ -9,7 +9,8 @@ class Api{
   static final Api instace = Api._();
   Api._();
 
-  final String baseUri = 'https://e4d5-5-22-103-234.ngrok-free.app/api/';
+  // final String baseUri = 'https://73df-188-122-106-247.ngrok-free.app/api/';
+  final String baseUri = 'http://localhost:8001/api/';
   final Map<String,String> baseHeader = { "Content-Type" : "application/json" };
   Future<String?> getToken()async => boxList[1].values.firstOrNull;
 

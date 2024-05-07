@@ -8,16 +8,14 @@ const signupController = asyncHandler(async(req,res)=>{
     const { name, email, password } = req.body;
     if( !name || !email || !password) return error(res, 401, 'All Field Sholud Be Complete !');
     
-    
     const isExist = await authModel.findOne({ email });
     if(isExist)return error(res, 401, 'Email is Already Taken !');
-
+    
     const user = await authModel.create({ name: name, email: email, password: password,profile_image: 1, token:''});
     const token = user.createJWT();
     
     try{
         await authModel.updateOne({ _id:user._id },{ token:token });
-        console.log(`${user.token}`.bgRed);
     }
     catch(e){
         console.log(`${e}`.bgCyan);

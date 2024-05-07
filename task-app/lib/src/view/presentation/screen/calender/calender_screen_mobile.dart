@@ -11,17 +11,17 @@ import 'package:taskapp/src/core/widget/main_appbar.dart';
 import 'package:taskapp/src/core/widget/shimmer/calender_screen_shimmder.dart';
 import 'package:taskapp/src/view/data/model/task_model.dart';
 import 'package:taskapp/src/view/presentation/bloc/task_bloc/task_bloc.dart';
-import 'package:taskapp/src/view/presentation/widget/calender_char_widget.dart';
-import 'package:taskapp/src/view/presentation/widget/home/home_card_widget.dart';
+import 'package:taskapp/src/view/presentation/widget/calender/calender_char_widget_mobile.dart';
+import 'package:taskapp/src/view/presentation/widget/home/card/home_card_widget_mobile.dart';
 
-class CalenderScreen extends StatefulWidget {
-  const CalenderScreen({super.key});
+class CalenderScreenMobile extends StatefulWidget {
+  const CalenderScreenMobile({super.key});
 
   @override
-  State<CalenderScreen> createState() => _CalenderScreenState();
+  State<CalenderScreenMobile> createState() => _CalenderScreenMobileState();
 }
 
-class _CalenderScreenState extends State<CalenderScreen> {
+class _CalenderScreenMobileState extends State<CalenderScreenMobile> {
 
   String toDayDate = DateTime.now().toString().split(' ')[0];
 
@@ -35,7 +35,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1), isHomeScreen: false),
+       appBar: MainAppBarWidget(size: Size( kwidth(context),kheight(context)*0.1), isHomeScreenMobile: false),
        body: SingleChildScrollView(
          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                               physics: const BouncingScrollPhysics(),
                               itemCount: data.length,
                               shrinkWrap: true,
-                              itemBuilder: (context, index) => CardTaskWidget(data:data[index]!)),
+                              itemBuilder: (context, index) => CardTaskWidgetMobile(data:data[index]!)),
                       ],
                     );
                   }

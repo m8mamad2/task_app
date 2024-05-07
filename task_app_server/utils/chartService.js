@@ -4,23 +4,28 @@ const taskModel = require('./../models/taskModel');
 
 function dateAsNameFun(){
     const weekdays = [];
-    for (let i = 0; i < 7; i++) {
-      weekdays.push(moment().add(i, 'days').locale('en').format('dddd'));
+    for(var i = 0; i <= 7; i++ ){
+        weekdays.push(moment().subtract(i, 'days').local('en').format('dddd'));
     }
+    // for (let i = 0; i < 7; i++) {
+    //   weekdays.push(moment().add(i, 'days').locale('en').format('dddd'));
+    // }
     return weekdays;
 }
 
 function dateAsNumberFun(){
 const weekdays = [];
 for (let i = 0; i < 7; i++) {
-    weekdays.push(moment().add(i, 'days').format('YYYY-MM-DD'));
+    weekdays.push(moment().subtract(i, 'days').format('YYYY-MM-DD'));
 }
 return weekdays;
 }
  
- async function getWorkTimeFromDB (){
+async function getWorkTimeFromDB (){
     const dateAsNumber = dateAsNumberFun();
     const dateAsLetter = dateAsNameFun();
+    console.log('As Number----',dateAsNumber);
+    console.log('As Letter----',dateAsLetter);
     const dataList = [];
 
     for(let i = 0; i < dateAsNumber.length; i++){ 
@@ -51,7 +56,6 @@ return weekdays;
             { [oneLetterDay] : `${totalHour}:${totalMinute}:${totalSecond}` } );
 
     }
-    console.log(`Dtaa ---->`, dataList);
     return dataList;
 }
 

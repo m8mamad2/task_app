@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/icons.dart';
+import 'package:taskapp/src/core/keys.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/widget/drawer.dart';
 import 'package:taskapp/src/view/presentation/bloc/notif_bloc/notif_bloc.dart';
 import 'package:taskapp/src/view/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:taskapp/src/view/presentation/screen/add_task_screen.dart';
-import 'package:taskapp/src/view/presentation/screen/calender_screen.dart';
-import 'package:taskapp/src/view/presentation/screen/home_screen.dart';
-import 'package:taskapp/src/view/presentation/screen/notif_screen.dart';
-import 'package:taskapp/src/view/presentation/screen/profile_screen.dart';
+import 'package:taskapp/src/view/presentation/screen/calender/calender_screen_desktop.dart';
+import 'package:taskapp/src/view/presentation/screen/calender/calender_screen_mobile.dart';
+import 'package:taskapp/src/view/presentation/screen/home/home_screen_mobile.dart';
+import 'package:taskapp/src/view/presentation/screen/notif/notif_screen_mobile.dart';
+import 'package:taskapp/src/view/presentation/screen/profile/profile_screen_mobile.dart';
 
-class BottomNavigationBarWidget extends StatefulWidget {
+class BottomNavigationBarWidgetMobile extends StatefulWidget {
   final int? selected;
-  const BottomNavigationBarWidget({super.key,this.selected});
+  const BottomNavigationBarWidgetMobile({super.key,this.selected});
 
   @override
-  State<BottomNavigationBarWidget> createState() => _BottomNavigationBarWidgetState();
+  State<BottomNavigationBarWidgetMobile> createState() => _BottomNavigationBarWidgetMobileState();
 }
-class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+class _BottomNavigationBarWidgetMobileState extends State<BottomNavigationBarWidgetMobile> {
 
-  final pages = const [ HomeScreen(), CalenderScreen(), HomeScreen() ,NotifScreen(), ProfileScreen() ];
+  final pages = const [ HomeScreenMobile(), CalenderScreenDesktop(), HomeScreenMobile() ,NotifScreenMobile(), ProfileScreenMobile() ];
   final List<String> titles = ['Home','Calender','','Notification','Profile'];
   late int _selected;
   
@@ -37,7 +39,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: globalKey,
+      key: Keys.bottomNavigationShet,
       drawer: const DrawerWidget(),
       body: IndexedStack( index: _selected, children: pages, ),
       bottomNavigationBar: SizedBox(
@@ -108,5 +110,3 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   }
 }
 
-
-GlobalKey<ScaffoldState> globalKey = GlobalKey(); //? key for Open Drawer
