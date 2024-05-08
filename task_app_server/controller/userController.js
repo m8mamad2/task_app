@@ -13,7 +13,6 @@ const changeProfileController = asyncHandler(async(req,res)=>{
     const user = getIdFromToken(req,res);
     if(!user) return error(res,404,'User Not Found! ');
     
-    console.log(`${user}`.bgCyan);
 
     try{
         await authModel.updateOne( { _id: user }, { profile_image: profileId }, );
@@ -37,7 +36,6 @@ const getUserController = asyncHandler(async(req,res,)=>{
         if(foundUser === null || !foundUser)return error(res,404,'User Not Found! ');
 
 
-        console.log(`${foundUser}`.bgCyan);
         return res.status(200).send(foundUser);
     }
     catch(e){ return error(res,404, `Erro ${e}`);}

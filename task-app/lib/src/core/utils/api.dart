@@ -10,7 +10,8 @@ class Api{
   Api._();
 
   // final String baseUri = 'https://73df-188-122-106-247.ngrok-free.app/api/';
-  final String baseUri = 'http://localhost:8001/api/';
+  final String baseUri = 'https://m8mamad2-task-app.liara.run/api/';
+   
   final Map<String,String> baseHeader = { "Content-Type" : "application/json" };
   Future<String?> getToken()async => boxList[1].values.firstOrNull;
 

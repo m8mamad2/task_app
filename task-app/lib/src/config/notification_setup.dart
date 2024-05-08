@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'dart:io' as IO;
-import 'dart:js' as js;
+// import 'dart:js' as js;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:taskapp/src/core/colors.dart';
@@ -53,9 +53,9 @@ class LocalNotificationSetup{
 
     
     if(kIsWeb){
-      await Timer.periodic(
-        Duration(hours: hour, minutes: minute), 
-        (timer)=> js.context.callMethod("showNotification",[title,des]));
+      // await Timer.periodic(
+      //   Duration(hours: hour, minutes: minute), 
+      //   (timer)=> js.context.callMethod("showNotification",[title,des]));
     }
     else{
       if(IO.Platform.isLinux){

@@ -6,7 +6,7 @@ import 'package:taskapp/src/core/colors.dart';
 import 'package:taskapp/src/core/responsive_chose/responsive_choses.dart';
 import 'package:taskapp/src/core/sizes.dart';
 import 'package:taskapp/src/core/utils/is_user_login.dart';
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -58,16 +58,18 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<bool> internetChecker()async{
       try {
-        bool hasInternet;
+        bool? hasInternet;
 
-        if(kIsWeb) hasInternet = html.window.navigator.onLine ?? false;
+        if(kIsWeb){
+          // hasInternet = html.window.navigator.onLine ?? false
+        }
         else{
           final result = await InternetAddress.lookup('google.com');
           hasInternet =  result.isNotEmpty && result[0].rawAddress.isNotEmpty;
         }
 
 
-        if(hasInternet){
+        if(hasInternet ?? false){
           bool isUserLogedIn = await isUserLoggin();
           if(mounted){
            await Future.delayed(const Duration(seconds: 5),()=>

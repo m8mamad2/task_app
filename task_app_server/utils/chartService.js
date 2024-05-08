@@ -24,8 +24,6 @@ return weekdays;
 async function getWorkTimeFromDB (){
     const dateAsNumber = dateAsNumberFun();
     const dateAsLetter = dateAsNameFun();
-    console.log('As Number----',dateAsNumber);
-    console.log('As Letter----',dateAsLetter);
     const dataList = [];
 
     for(let i = 0; i < dateAsNumber.length; i++){ 
