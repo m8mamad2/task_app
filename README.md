@@ -1,6 +1,4 @@
 
-
-
 # 👋 Task App
 A Application For Organize your works And Track Your Progress.
 
@@ -11,6 +9,17 @@ A Application For Organize your works And Track Your Progress.
 **Client:** Flutter
 
 **Server:** Node JS, Express, MongoDB
+
+
+
+## Screenshots
+
+![Desktop Screenshot](https://i.postimg.cc/5ytD2FmH/desktop-linux.png)
+
+![Desktop Screenshot](https://i.postimg.cc/rpbZQh6Q/2.png)
+
+
+
 
 
 ## 🔳 Front Application ( Linux - Android - WEB  )
