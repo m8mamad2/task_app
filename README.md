@@ -12,7 +12,7 @@ A Application For Organize your works And Track Your Progress.
 
 
 
-## Screenshots
+## 🖼 Screenshots
 
 ![Desktop Screenshot](https://i.postimg.cc/5ytD2FmH/desktop-linux.png)
 
