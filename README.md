@@ -75,6 +75,7 @@ Run App
 ## 🔽 Download
 
 [Downlaod APK File](https://www.shayadakar.ir/data/task_app.apk)
+   
 [Downlaod Linux Install File](https://www.shayadakar.ir/data/taskapp_linux)
 
 
