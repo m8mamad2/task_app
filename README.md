@@ -1,4 +1,4 @@
-
+د
 # 👋 Task App
 A Application For Organize your works And Track Your Progress.
 
@@ -10,7 +10,7 @@ A Application For Organize your works And Track Your Progress.
 
 **Server:** Node JS, Express, MongoDB
 
-
+د
 
 ## 🖼 Screenshots
 
@@ -18,7 +18,9 @@ A Application For Organize your works And Track Your Progress.
 
 ![Desktop Screenshot](https://www.shayadakar.ir/data/desktop_linux.png)
 
+![desktop_linux](https://github.com/M8mamad2/task_app/assets/107222496/aebaa88f-77e9-4fa3-aa73-dd992e62a999)
 
+![Task_sh2ot](https://github.com/M8mamad2/task_app/assets/107222496/11b0b1fe-c65f-4e74-88d2-0c0e5955a899)
 
 
 
