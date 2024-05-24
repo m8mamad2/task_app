@@ -14,9 +14,9 @@ A Application For Organize your works And Track Your Progress.
 
 ## 🖼 Screenshots
 
-![Desktop Screenshot]([https://i.postimg.cc/5ytD2FmH/desktop-linux.png](https://www.shayadakar.ir/data/Task_sh2ot.jpg))
+![Desktop Screenshot](https://www.shayadakar.ir/data/Task_sh2ot.jpg)
 
-![Desktop Screenshot]([https://i.postimg.cc/rpbZQh6Q/2.png](https://www.shayadakar.ir/data/desktop_linux.png))
+![Desktop Screenshot](https://www.shayadakar.ir/data/desktop_linux.png)
 
 
 
