@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.taskapp"
     compileSdkVersion 34
-    ndkVersion flutter.ndkVersion
+    ndkVersion "26.1.10909125"
 
     compileOptions {
         coreLibraryDesugaringEnabled true

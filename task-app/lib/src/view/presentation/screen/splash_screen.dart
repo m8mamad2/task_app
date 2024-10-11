@@ -54,7 +54,7 @@ class SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Widget logoLottie =  Center(child: Image.asset( 'assets/logo/T.gif', filterQuality: FilterQuality.high,));
+  Widget logoLottie =  Center(child: Image.asset('assets/logo/T.gif', filterQuality: FilterQuality.high,));
 
   Future<bool> internetChecker()async{
       try {
